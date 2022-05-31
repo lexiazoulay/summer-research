@@ -5,6 +5,7 @@ import time
 import os
 import re
 import pandas
+import numpy
 
 def TicTocGenerator():
     # Generator that returns time differences
@@ -83,5 +84,21 @@ for st in range len(stars)
     logg          = sample[8]
     coolingAge    = sample[9]
     precLogAge    = sample[10]
+    
+    N_full_len    = len(logAge)
+    iter          = numpy.arange(1, N_full_len + 1)
+    
+    skip_burn = 1
+    if stage(end) < 3:          #entire file remained in burnin, so 
+        print(' Entire file remained in burnin, so nothing to calculate or plot ... skipping.\n')
+        continue                   #nothing to calculate or plot, skipping
+    if stage(1) == 3:               #already cleaned by hand with burnin removed
+        start_iter = 1
+    else:
+        for skip_burn in iter:
+            if stage(skip_burn) == 3:
+                start_iter = skip_burn
+                break
+    
     
     
