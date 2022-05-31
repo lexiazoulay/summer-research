@@ -72,5 +72,4 @@ for st in range len(stars)
     #unsure about open() vs. importdata()
     sample        = pandas.read_csv(stars(st).name, ' ', 1)
     
-    helloooooooooo
     
