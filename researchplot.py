@@ -95,10 +95,14 @@ for st in range len(stars)
     if stage(1) == 3:               #already cleaned by hand with burnin removed
         start_iter = 1
     else:
-        for skip_burn in iter:
+        for skip_burn in iter:       #skip over the burnin iterations
             if stage(skip_burn) == 3:
                 start_iter = skip_burn
                 break
+    #Check for chain not yet converged as shown by logPost climbing 
+    #dramatically. If that happens, move start_iter forward.
     
+    add_iter    = [0,0]
+    logP_comp   = numpy.average(
     
     
