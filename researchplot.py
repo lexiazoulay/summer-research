@@ -103,6 +103,26 @@ for st in range len(stars)
     #dramatically. If that happens, move start_iter forward.
     
     add_iter    = [0,0]
-    logP_comp   = numpy.average(
+    logP_half_len = len(logPost)/2
+    logP_half = numpy.empty(logP_half_len)
+    x = 0
+    for x in logP_half:
+        logP_half = logPost[logP_half_len + x]
+    logP_comp   = numpy.average(logP_half)
     
+    threshold   = 10				# logPost threshold diff for recognizing convergence
+    chunk_len   = 1000				# chain lengths over which means are checked
+    half_chnlen = chunk_len/2		# convenience
     
+    i_logPost = start_iter
+    for i_logPost in chunk_len:N_full_len	# calc chain means in chunks    HOW???
+        lo = max(start_iter, i_logPost-half_chnlen)
+        hi = min(i_logPost+half_chnlen, N_full_len)
+        if hi < lo:
+            print(' Not enough iterations in ', stars(st).name, ' to check burnin via logPost, continuing ...\n')
+            break
+        logPostVal = mean(logPost(lo:hi))
+        if logPostVal < logP_comp - threshold:
+            add_iter(1) = i_logPost         # ?????
+      
+    #numpy.std(...) standard deviation
