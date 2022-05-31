@@ -70,6 +70,18 @@ for st in range len(stars)
     #read in BASE-9 singlePopMcmc + sampleWDMass file
 
     #unsure about open() vs. importdata()
-    sample        = pandas.read_csv(stars(st).name, ' ', 1)
+    sample        = pandas.read_csv(stars(st).name, ' ') #may not be correct...
+    
+    logAge        = sample(0)
+    fe-h          = sample(1)
+    parralax      = sample(2)
+    absorb        = sample(3)
+    logPost       = sample(4)
+    stage         = sample(5)
+    mass          = sample(6)
+    logT          = sample(7)
+    logg          = sample(8)
+    coolingAge    = sample(9)
+    precLogAge    = sample(10)
     
     
