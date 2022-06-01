@@ -1,12 +1,15 @@
 #plot mcmc sampling histories for Gaia WDS sample
 %reset-f #ask Sarah what the help plot_sampling_batch;
 
+import sys
 import time
 import os
 import re
 import pandas
 import numpy
+import matplotlib.pyplot as plt
 
+filename = sys.argv[1]
 def TicTocGenerator():
     # Generator that returns time differences
     ti = 0           # initial time
@@ -73,22 +76,22 @@ for st in range len(stars)
     #unsure about open() vs. importdata()
     sample        = pandas.read_csv(stars(st).name, ' ') #may not be correct...
     
-    logAge        = sample[0]
-    fe-h          = sample[1]
-    parralax      = sample[2]
-    absorb        = sample[3]
-    logPost       = sample[4]
-    stage         = sample[5]
-    mass          = sample[6]
-    logT          = sample[7]
-    logg          = sample[8]
-    coolingAge    = sample[9]
-    precLogAge    = sample[10]
+    logAge        = sample[:,0]
+    fe-h          = sample[:,1]
+    parralax      = sample[:,2]
+    absorb        = sample[:,3]
+    logPost       = sample[:,4]
+    stage         = sample[:,5]
+    mass          = sample[:,6]
+    logT          = sample[:,7]
+    logg          = sample[:,8]
+    coolingAge    = sample[:,9]
+    precLogAge    = sample[:,10]
     
     N_full_len    = len(logAge)
     iter          = numpy.arange(1, N_full_len + 1)
     
-    skip_burn = 1
+    skip_burn = 1 #may be able to do a lot simplier based off of plot_mcmc.py scrpit
     if stage(end) < 3:          #entire file remained in burnin, so 
         print(' Entire file remained in burnin, so nothing to calculate or plot ... skipping.\n')
         continue                   #nothing to calculate or plot, skipping
