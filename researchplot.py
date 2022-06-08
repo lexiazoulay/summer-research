@@ -74,7 +74,7 @@ for st in range len(stars)
     #read in BASE-9 singlePopMcmc + sampleWDMass file
 
     #unsure about open() vs. importdata()
-    sample  = np.loadtxt(stars(st).name, ' ')
+    sample  = numpy.loadtxt(stars(st).name, ' ')
 
 logAge_all      = sample[:,0]
 fe_h_all        = sample[;,1]
@@ -89,7 +89,7 @@ coolingAge_all  = sample[:,9]
 precLogAge_all  = sample[:,10]
 
 #dont plot burn in
-ind        = np.where(stage == 3)
+ind        = numpy.where(stage == 3)
 logAge     = logAge_all[ind]
 fe_h       = fe_h_all[ind]   
 parralax   = parralax_all[ind]
