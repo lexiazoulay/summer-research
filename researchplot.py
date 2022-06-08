@@ -39,7 +39,7 @@ stars = dir('*.wd.all') #ask Sarah about if this methods are written the same in
 #ll: logAge FeH parallax absorption logPost stage mass logTeff logg coolingAge precLogAge
 for st in range len(stars)
     print('Working on ', st, 'of ', len(stars), ': ', stars(st).name)
-    #grab EDR3 parallax values out of file name
+    #grab EDR3 parallax values out of file name (possible could be done w np.loadtxt() based off stats_sampleWDMass.py
     pattern       = '.wd.all'
     replacement   = ''
     S             = re.sub(pattern, replacement, stars(st).name)
@@ -74,38 +74,37 @@ for st in range len(stars)
     #read in BASE-9 singlePopMcmc + sampleWDMass file
 
     #unsure about open() vs. importdata()
-    sample        = pandas.read_csv(stars(st).name, ' ') #may not be correct...
-    
-    logAge        = sample[:,0]
-    fe-h          = sample[:,1]
-    parralax      = sample[:,2]
-    absorb        = sample[:,3]
-    logPost       = sample[:,4]
-    stage         = sample[:,5]
-    mass          = sample[:,6]
-    logT          = sample[:,7]
-    logg          = sample[:,8]
-    coolingAge    = sample[:,9]
-    precLogAge    = sample[:,10]
-    
-    N_full_len    = len(logAge)
-    iter          = numpy.arange(1, N_full_len + 1)
-    
-    skip_burn = 1 #may be able to do a lot simplier based off of plot_mcmc.py scrpit
-    if stage(end) < 3:          #entire file remained in burnin, so 
-        print(' Entire file remained in burnin, so nothing to calculate or plot ... skipping.\n')
-        continue                   #nothing to calculate or plot, skipping
-    if stage(1) == 3:               #already cleaned by hand with burnin removed
-        start_iter = 1
-    else:
-        for skip_burn in iter:       #skip over the burnin iterations
-            if stage(skip_burn) == 3:
-                start_iter = skip_burn
-                break
+    sample  = np.loadtxt(stars(st).name, ' ')
+
+logAge_all      = sample[:,0]
+fe_h_all        = sample[;,1]
+parralax_all    = sample[:,2]
+absorb_all      = sample[:,3]
+logPost_all     = sample[:,4]
+stage_all       = sample[:,5]
+mass_all        = sample[:,6]
+logT_all        = sample[:,7]
+logg_all        = sample[:,8]
+coolingAge_all  = sample[:,9]
+precLogAge_all  = sample[:,10]
+
+#dont plot burn in
+ind        = np.where(stage == 3)
+logAge     = logAge_all[ind]
+fe_h       = fe_h_all[ind]   
+parralax   = parralax_all[ind]
+absrob     = absorb_all[ind]
+logPost    = logPost_all[ind]
+stage      = stage_all[ind]
+mass       = mass_all[ind]
+logT       = logT_all[ind]
+logg       = logg_all[ind]
+coolingAge = coolingAge_all[ind]
+precLogAge = precLogAge_all[ind]
     #Check for chain not yet converged as shown by logPost climbing 
     #dramatically. If that happens, move start_iter forward.
     
-    add_iter    = [0,0]
+    add_iter    = [0,0] #maybe done w 'calculate stats' section of stats_sampleWDMass.py
     logP_half_len = len(logPost)/2
     logP_half = numpy.empty(logP_half_len)
     x = 0
