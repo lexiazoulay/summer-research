@@ -88,6 +88,9 @@ logg_all        = sample[:,8]
 coolingAge_all  = sample[:,9]
 precLogAge_all  = sample[:,10]
 
+N_full_len      = len(logAge)
+iteration       = 1:N_full_len
+
 #dont plot burn in
 ind        = numpy.where(stage == 3)
 logAge     = logAge_all[ind]
@@ -101,30 +104,37 @@ logT       = logT_all[ind]
 logg       = logg_all[ind]
 coolingAge = coolingAge_all[ind]
 precLogAge = precLogAge_all[ind]
-    #Check for chain not yet converged as shown by logPost climbing 
-    #dramatically. If that happens, move start_iter forward.
-    
-    add_iter    = [0,0] #maybe done w 'calculate stats' section of stats_sampleWDMass.py
-    logP_half_len = len(logPost)/2
-    logP_half = numpy.empty(logP_half_len)
-    x = 0
-    for x in logP_half:
-        logP_half = logPost[logP_half_len + x]
-    logP_comp   = numpy.average(logP_half)
-    
-    threshold   = 10				# logPost threshold diff for recognizing convergence
-    chunk_len   = 1000				# chain lengths over which means are checked
-    half_chnlen = chunk_len/2		# convenience
-    
-    i_logPost = start_iter
-    for i_logPost in chunk_len:N_full_len	# calc chain means in chunks    HOW???
-        lo = max(start_iter, i_logPost-half_chnlen)
-        hi = min(i_logPost+half_chnlen, N_full_len)
-        if hi < lo:
-            print(' Not enough iterations in ', stars(st).name, ' to check burnin via logPost, continuing ...\n')
-            break
-        logPostVal = mean(logPost(lo:hi))
-        if logPostVal < logP_comp - threshold:
-            add_iter(1) = i_logPost         # ?????
-      
-    #numpy.std(...) standard deviation
+
+iter_run   = iteration[ind]
+#for plotting, determine which iterations outside +-3 EDR3 parallax sigma
+k = 1
+hold_array = []
+for k in range(len(ind)) :
+    if parallax(k) <= starPrlx3p and parallax(k) >= starPrlx3n:
+        hold_array.append(k) 
+        
+    if j > 1:
+        logAge_hold     = numpy.take(logAge, hold_array)
+        fe_h_hold       = numpy.take(fe_h, hold_array)
+        parallax_hold   = numpy.take(parralax, hold_array)
+        absrob_hold     = numpy.take(absrob, hold_array)
+        logPost_hold    = numpy.take(logPost, hold_array)
+        mass_hold       = numpy.take(mass,hold_array)
+        logT_hold       = numpy.take(logT, hold_array)
+        logg_hold       = numpy.take(logg, hold_array)
+        coolingAge_hold = numpy.take(coolingAge,hold_array)
+        precLogAge_hold = numpy.take(precLogAge, hold_array)
+        iter_hold       = numpy.take(iter_run, hold_array)
+    else :
+        logAge_hold[0]      = 0
+        fe_h_hold[0]        = 0
+        parallax_hold[0]    = 0
+        absrob_hold[0]      = 0
+        logPost_hold[0]     = 0
+        mass_hold[0]        = 0
+        logT_hold[0]        = 0
+        logg_hold[0]        = 0
+        coolingAge_hold[0]  = 0
+        precLogAge_hold[0]  = 0
+        iter_hold[0]        = 0
+   
