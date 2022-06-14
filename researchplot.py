@@ -113,7 +113,7 @@ for k in range(len(ind)) :
     if parallax(k) <= starPrlx3p and parallax(k) >= starPrlx3n:
         hold_array.append(k) 
         
-    if j > 1:
+    if k > 1:
         logAge_hold     = numpy.take(logAge, hold_array)
         fe_h_hold       = numpy.take(fe_h, hold_array)
         parallax_hold   = numpy.take(parralax, hold_array)
@@ -139,3 +139,17 @@ for k in range(len(ind)) :
         iter_hold[0]        = 0
    # creat plots #
 
+
+
+
+plt.plot([X-AXIS], [Y-AXIS], [COLOR], [PLOT LABEL])
+#plt.axhline(y=T_h, color='yellow', linestyle='--', label='T_h')     HORIZONTAL LINE
+#plt.axvline(x=eps_crit, color='blue', linestyle='--', label='epsilon critical')    VERTICAL LINE
+
+
+plt.xlim([-0.2, 0])
+plt.xlabel('[LABEL]', fontsize=18)
+plt.ylabel('[LABEL]', fontsize=18)
+#plt.legend()
+
+#plot.show()
