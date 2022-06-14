@@ -137,4 +137,5 @@ for k in range(len(ind)) :
         coolingAge_hold[0]  = 0
         precLogAge_hold[0]  = 0
         iter_hold[0]        = 0
-   
+   # creat plots #
+
