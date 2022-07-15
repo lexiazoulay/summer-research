@@ -138,18 +138,34 @@ for k in range(len(ind)) :
         precLogAge_hold[0]  = 0
         iter_hold[0]        = 0
    # creat plots #
+fig, axs = plt.subplots(5,2)
+axs[0, 0].scatter(iter_run, logAge)
+axs[0, 0].set_title('Log Age')
+
+axs[1, 0].scatter(iter_run, fe_h)
+axs[1, 0].set_title('Metallicity')
+
+axs[2, 0].scatter(iter_run, parallax)
+axs[2, 0].set_title('Parallax')
+
+axs[3, 0].scatter(iter_run, absorb)
+axs[3, 0].set_title('Absorbtion')
+
+axs[4, 0].scatter(iter_run, logPost)
+axs[4, 0].set_title('logPost')
+
+axs[5, 0].scatter(iter_run, mass)
+axs[5, 0].set_title('Mass')
 
 
-
-
-plt.plot([X-AXIS], [Y-AXIS], [COLOR], [PLOT LABEL])
+#plt.plot([X-AXIS], [Y-AXIS], [COLOR], [PLOT LABEL])
 #plt.axhline(y=T_h, color='yellow', linestyle='--', label='T_h')     HORIZONTAL LINE
 #plt.axvline(x=eps_crit, color='blue', linestyle='--', label='epsilon critical')    VERTICAL LINE
 
 
-plt.xlim([-0.2, 0])
-plt.xlabel('[LABEL]', fontsize=18)
-plt.ylabel('[LABEL]', fontsize=18)
+#plt.xlim([-0.2, 0])
+#plt.xlabel('[LABEL]', fontsize=18)
+#plt.ylabel('[LABEL]', fontsize=18)
 #plt.legend()
 
 #plot.show()
