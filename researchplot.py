@@ -96,7 +96,7 @@ ind        = numpy.where(stage == 3)
 logAge     = logAge_all[ind]
 fe_h       = fe_h_all[ind]   
 parallax   = parallax_all[ind]
-absrob     = absorb_all[ind]
+absorb     = absorb_all[ind]
 logPost    = logPost_all[ind]
 stage      = stage_all[ind]
 mass       = mass_all[ind]
@@ -117,7 +117,7 @@ for k in range(len(ind)) :
         logAge_hold     = numpy.take(logAge, hold_array)
         fe_h_hold       = numpy.take(fe_h, hold_array)
         parallax_hold   = numpy.take(parallax, hold_array)
-        absrob_hold     = numpy.take(absrob, hold_array)
+        absorb_hold     = numpy.take(absorb, hold_array)
         logPost_hold    = numpy.take(logPost, hold_array)
         mass_hold       = numpy.take(mass,hold_array)
         logT_hold       = numpy.take(logT, hold_array)
@@ -129,7 +129,7 @@ for k in range(len(ind)) :
         logAge_hold[0]      = 0
         fe_h_hold[0]        = 0
         parallax_hold[0]    = 0
-        absrob_hold[0]      = 0
+        absorb_hold[0]      = 0
         logPost_hold[0]     = 0
         mass_hold[0]        = 0
         logT_hold[0]        = 0
