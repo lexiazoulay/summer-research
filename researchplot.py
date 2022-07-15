@@ -78,7 +78,7 @@ for st in range len(stars)
 
 logAge_all      = sample[:,0]
 fe_h_all        = sample[;,1]
-parralax_all    = sample[:,2]
+parallax_all    = sample[:,2]
 absorb_all      = sample[:,3]
 logPost_all     = sample[:,4]
 stage_all       = sample[:,5]
@@ -95,7 +95,7 @@ iteration       = 1:N_full_len
 ind        = numpy.where(stage == 3)
 logAge     = logAge_all[ind]
 fe_h       = fe_h_all[ind]   
-parralax   = parralax_all[ind]
+parallax   = parallax_all[ind]
 absrob     = absorb_all[ind]
 logPost    = logPost_all[ind]
 stage      = stage_all[ind]
@@ -116,7 +116,7 @@ for k in range(len(ind)) :
     if k > 1:
         logAge_hold     = numpy.take(logAge, hold_array)
         fe_h_hold       = numpy.take(fe_h, hold_array)
-        parallax_hold   = numpy.take(parralax, hold_array)
+        parallax_hold   = numpy.take(parallax, hold_array)
         absrob_hold     = numpy.take(absrob, hold_array)
         logPost_hold    = numpy.take(logPost, hold_array)
         mass_hold       = numpy.take(mass,hold_array)
