@@ -154,8 +154,20 @@ axs[3, 0].set_title('Absorbtion')
 axs[4, 0].scatter(iter_run, logPost)
 axs[4, 0].set_title('logPost')
 
-axs[5, 0].scatter(iter_run, mass)
-axs[5, 0].set_title('Mass')
+axs[0, 1].scatter(iter_run, mass)
+axs[0, 1].set_title('Mass')
+
+axs[1,1].scatter(iter_run, logT)
+axs[1,1].set_title('log(T)')
+
+axs[2,2].scatter(iter_run, coolingAge)
+axs[2,2].set_title('log(coolAge)')
+
+axs[3,3].scatter(iter_run, logg)
+axs[3,3].set_title('log(g)')
+
+axs[4,4].scatter(iter_run, precLogAge)
+axs[4,4].set_title('log(precAge')
 
 
 #plt.plot([X-AXIS], [Y-AXIS], [COLOR], [PLOT LABEL])
@@ -168,4 +180,9 @@ axs[5, 0].set_title('Mass')
 #plt.ylabel('[LABEL]', fontsize=18)
 #plt.legend()
 
-#plot.show()
+plot.show()
+plt.savefig('Sampling Plot')
+counter = counter + 1
+toc
+end
+
